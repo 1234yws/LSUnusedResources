@@ -270,7 +270,8 @@ static NSString * const kResultIdentifyFilePath    = @"FilePath";
         if ([identifier isEqualToString:kResultIdentifyFileIcon]) {
             return [info image];
         } else if ([identifier isEqualToString:kResultIdentifyFileName]) {
-            return info.name;
+            NSArray *arr = [info.name componentsSeparatedByString:@"."];
+            return arr.firstObject;
         } else if ([identifier isEqualToString:kResultIdentifyFileSize]) {
             return [NSString stringWithFormat:@"%.2f", info.fileSize / 1024.0];
         }
