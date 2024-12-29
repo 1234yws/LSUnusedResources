@@ -212,7 +212,7 @@ static NSString * const kResultIdentifyFilePath    = @"FilePath";
     [[ResourceSettings sharedObject] addResourcePattern:[[ResourceStringSearcher sharedObject] createEmptyResourcePattern]];
     [self.patternTableView reloadData];
 }
-
+// 单击复制
 - (void)onResultsTableViewSingleClicked {
     // Copy to pasteboard
     NSInteger index = [self.resultsTableView clickedRow];
@@ -220,8 +220,10 @@ static NSString * const kResultIdentifyFilePath    = @"FilePath";
         return;
     }
     ResourceFileInfo *info = [self.unusedResults objectAtIndex:index];
+    NSArray *arr = [info.name componentsSeparatedByString:@"."];
+
     [[NSPasteboard generalPasteboard] clearContents];
-    [[NSPasteboard generalPasteboard] setString:info.name forType:NSStringPboardType];
+    [[NSPasteboard generalPasteboard] setString:arr.firstObject forType:NSStringPboardType];
 }
 
 - (void)onResultsTableViewDoubleClicked {
